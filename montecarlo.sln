@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonteCarlo", "src\MonteCarlo\MonteCarlo.csproj", "{1A69C40F-DCE9-4DEA-8A49-7EA227707E9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe", "src\examples\TicTacToe\TicTacToe.csproj", "{C1A9F4F9-6A35-4692-ABCF-2E8FEB95CCA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToeTests", "test\TicTacToeTests\TicTacToeTests.csproj", "{62924053-8DE0-458D-AEB7-F8B46F9FBAB3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A69C40F-DCE9-4DEA-8A49-7EA227707E9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A69C40F-DCE9-4DEA-8A49-7EA227707E9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A69C40F-DCE9-4DEA-8A49-7EA227707E9A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1A69C40F-DCE9-4DEA-8A49-7EA227707E9A}.Debug|x64.Build.0 = Debug|Any CPU
+		{1A69C40F-DCE9-4DEA-8A49-7EA227707E9A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1A69C40F-DCE9-4DEA-8A49-7EA227707E9A}.Debug|x86.Build.0 = Debug|Any CPU
+		{1A69C40F-DCE9-4DEA-8A49-7EA227707E9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A69C40F-DCE9-4DEA-8A49-7EA227707E9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A69C40F-DCE9-4DEA-8A49-7EA227707E9A}.Release|x64.ActiveCfg = Release|Any CPU
+		{1A69C40F-DCE9-4DEA-8A49-7EA227707E9A}.Release|x64.Build.0 = Release|Any CPU
+		{1A69C40F-DCE9-4DEA-8A49-7EA227707E9A}.Release|x86.ActiveCfg = Release|Any CPU
+		{1A69C40F-DCE9-4DEA-8A49-7EA227707E9A}.Release|x86.Build.0 = Release|Any CPU
+		{C1A9F4F9-6A35-4692-ABCF-2E8FEB95CCA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1A9F4F9-6A35-4692-ABCF-2E8FEB95CCA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1A9F4F9-6A35-4692-ABCF-2E8FEB95CCA8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C1A9F4F9-6A35-4692-ABCF-2E8FEB95CCA8}.Debug|x64.Build.0 = Debug|Any CPU
+		{C1A9F4F9-6A35-4692-ABCF-2E8FEB95CCA8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C1A9F4F9-6A35-4692-ABCF-2E8FEB95CCA8}.Debug|x86.Build.0 = Debug|Any CPU
+		{C1A9F4F9-6A35-4692-ABCF-2E8FEB95CCA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1A9F4F9-6A35-4692-ABCF-2E8FEB95CCA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1A9F4F9-6A35-4692-ABCF-2E8FEB95CCA8}.Release|x64.ActiveCfg = Release|Any CPU
+		{C1A9F4F9-6A35-4692-ABCF-2E8FEB95CCA8}.Release|x64.Build.0 = Release|Any CPU
+		{C1A9F4F9-6A35-4692-ABCF-2E8FEB95CCA8}.Release|x86.ActiveCfg = Release|Any CPU
+		{C1A9F4F9-6A35-4692-ABCF-2E8FEB95CCA8}.Release|x86.Build.0 = Release|Any CPU
+		{62924053-8DE0-458D-AEB7-F8B46F9FBAB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62924053-8DE0-458D-AEB7-F8B46F9FBAB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62924053-8DE0-458D-AEB7-F8B46F9FBAB3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{62924053-8DE0-458D-AEB7-F8B46F9FBAB3}.Debug|x64.Build.0 = Debug|Any CPU
+		{62924053-8DE0-458D-AEB7-F8B46F9FBAB3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{62924053-8DE0-458D-AEB7-F8B46F9FBAB3}.Debug|x86.Build.0 = Debug|Any CPU
+		{62924053-8DE0-458D-AEB7-F8B46F9FBAB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62924053-8DE0-458D-AEB7-F8B46F9FBAB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62924053-8DE0-458D-AEB7-F8B46F9FBAB3}.Release|x64.ActiveCfg = Release|Any CPU
+		{62924053-8DE0-458D-AEB7-F8B46F9FBAB3}.Release|x64.Build.0 = Release|Any CPU
+		{62924053-8DE0-458D-AEB7-F8B46F9FBAB3}.Release|x86.ActiveCfg = Release|Any CPU
+		{62924053-8DE0-458D-AEB7-F8B46F9FBAB3}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB81C8F8-976A-4679-BF19-A0D29029D70D}
+	EndGlobalSection
+EndGlobal
