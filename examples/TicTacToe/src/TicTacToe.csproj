@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MonteCarlo\MonteCarlo.csproj" />
+    <ProjectReference Include="..\..\..\src\MonteCarlo\MonteCarlo.csproj" />
   </ItemGroup>
 
 </Project>

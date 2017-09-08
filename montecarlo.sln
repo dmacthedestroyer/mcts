@@ -5,9 +5,9 @@ VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonteCarlo", "src\MonteCarlo\MonteCarlo.csproj", "{1A69C40F-DCE9-4DEA-8A49-7EA227707E9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe", "src\examples\TicTacToe\TicTacToe.csproj", "{C1A9F4F9-6A35-4692-ABCF-2E8FEB95CCA8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe", "examples\TicTacToe\src\TicTacToe.csproj", "{C1A9F4F9-6A35-4692-ABCF-2E8FEB95CCA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToeTests", "test\TicTacToeTests\TicTacToeTests.csproj", "{62924053-8DE0-458D-AEB7-F8B46F9FBAB3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToeTests", "examples\TicTacToe\test\TicTacToeTests.csproj", "{62924053-8DE0-458D-AEB7-F8B46F9FBAB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
