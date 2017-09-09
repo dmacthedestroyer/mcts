@@ -1,0 +1,63 @@
+﻿
+
+X
+ X
+  X
+   X
+--- bottom left
+
+
+ X
+  X
+   X
+    X
+--- bottom middle
+
+
+   X
+    X
+     X
+      X
+--- bottom right
+
+X
+ X
+  X
+   X
+
+--- middle left
+
+  X
+   X
+    X
+     X
+
+--- middle middle
+
+   X
+    X
+     X
+      X
+
+--- middle right
+X
+ X
+  X
+   X
+
+
+--- top left
+ X
+  X
+   X
+    X
+
+
+--- top middle
+   X
+    X
+     X
+      X
+
+
+--- top right

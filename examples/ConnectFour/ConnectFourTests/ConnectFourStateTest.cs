@@ -60,6 +60,30 @@ namespace ConnectFourTests
                 Assert.AreEqual(0, state.GetResult(O), state.ToString());
             }
         }
+
+        [TestMethod]
+        public void GetResult_DiagonalBottomTop()
+        {
+            var boards = GetStatesFromData("TestData.GetResult_DiagonalBottomTop.txt");
+
+            foreach (var state in boards)
+            {
+                Assert.AreEqual(1, state.GetResult(X), state.ToString());
+                Assert.AreEqual(0, state.GetResult(O), state.ToString());
+            }
+        }
+
+        [TestMethod]
+        public void GetResult_DiagonalTopBottom()
+        {
+            var boards = GetStatesFromData("TestData.GetResult_DiagonalTopBottom.txt");
+
+            foreach (var state in boards)
+            {
+                Assert.AreEqual(1, state.GetResult(X), state.ToString());
+                Assert.AreEqual(0, state.GetResult(O), state.ToString());
+            }
+        }
     }
 
     public static class ExtensionMethods

@@ -68,24 +68,34 @@ namespace ConnectFour
         {
             var runs = new List<int[]>();
 
-            for(var row = 0; row < NumRows; row++)
-                for(var col = 0; col < NumCols; col++)
+            for (var row = 0; row < NumRows; row++)
+            {
+                var canRunTop = row < NumRows - 3;
+                for (var col = 0; col < NumCols; col++)
                 {
-                    if (col < NumCols - 3)
+                    var canRunRight = col < NumCols - 3;
+                    if (canRunRight)
                     {
                         var horizontalRun = Enumerable.Range(col, 4).Select(c => GetBoardIndex(row, c)).ToArray();
                         runs.Add(horizontalRun);
                     }
-                    if (row < NumRows - 3)
+                    if (canRunTop)
                     {
                         var verticalRun = Enumerable.Range(row, 4).Select(r => GetBoardIndex(r, col)).ToArray();
                         runs.Add(verticalRun);
                     }
+                    if(canRunRight && canRunTop)
+                    {
+                        var diagonalBottomRopRun = Enumerable.Range(0, 4).Select(i => GetBoardIndex(row + i, col + i)).ToArray();
+                        runs.Add(diagonalBottomRopRun);
+                    }
+                    if(canRunRight && row > 2)
+                    {
+                        var diagonalTopBottomRun = Enumerable.Range(0, 4).Select(i => GetBoardIndex(row - i, col + i)).ToArray();
+                        runs.Add(diagonalTopBottomRun);
+                    }
                 }
-
-            // TODO: diagonal bottom-to-top runs
-
-            // TODO: diagonal top-to-bottom runs
+            }
 
             return runs;
         }
