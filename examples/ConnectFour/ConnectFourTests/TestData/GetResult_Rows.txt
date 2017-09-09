@@ -1,0 +1,56 @@
+﻿XXXX
+XOXOXOX
+OXOXOXO
+OXOXOXO
+XOXOXOX
+OXOXOXO
+--- ^ top left
+
+
+
+
+OOO
+XXXX
+--- ^ bottom left
+
+
+
+
+ O O
+OXXXX
+--- ^ bottom middle
+
+
+
+
+  O  O
+ OXXXX
+--- ^ bottom middle
+
+
+   O
+   O
+   O
+   XXXX
+--- ^ bottom right
+  XXXX
+XOXOXOX
+OXOXOXO
+OXOXOXO
+XOXOXOX
+OXOXOXO
+--- ^ top middle
+   XXXX
+XOXOXOX
+OXOXOXO
+OXOXOXO
+XOXOXOX
+OXOXOXO
+--- ^ top right
+
+
+
+   OO
+  XXXXO
+OXOXOXO
+--- ^ middle middle

@@ -61,19 +61,27 @@ namespace ConnectFour
         /// <returns></returns>
         private int GetBoardIndex(int row, int col)
         {
-            return row * NumRows + col;
+            return row * NumCols + col;
         }
 
         private IList<int[]> GetDefaultAvailableWinningRuns()
         {
             var runs = new List<int[]>();
 
-            // horizontal runs
             for(var row = 0; row < NumRows; row++)
-                for(var col = 0; col < NumCols - 3; col++)
-                    runs.Add(Enumerable.Range(GetBoardIndex(row, col), 4).ToArray());
-
-            // TODO: vertical runs
+                for(var col = 0; col < NumCols; col++)
+                {
+                    if (col < NumCols - 3)
+                    {
+                        var horizontalRun = Enumerable.Range(col, 4).Select(c => GetBoardIndex(row, c)).ToArray();
+                        runs.Add(horizontalRun);
+                    }
+                    if (row < NumRows - 3)
+                    {
+                        var verticalRun = Enumerable.Range(row, 4).Select(r => GetBoardIndex(r, col)).ToArray();
+                        runs.Add(verticalRun);
+                    }
+                }
 
             // TODO: diagonal bottom-to-top runs
 
@@ -154,7 +162,7 @@ namespace ConnectFour
             var winner = GetWinner();
             if (winner == forPlayer) return 1;
             if (winner == null) return 0.5;
-            return -1;
+            return 0;
         }
 
         public IEnumerable<ConnectFourPlayer> GetRow(int rowNum)
@@ -173,8 +181,11 @@ namespace ConnectFour
 
         public override string ToString()
         {
-            // TODO: make a console-friendly string representation
-            return base.ToString();
+            var sb = new StringBuilder();
+            for(var rowNum = NumRows-1; rowNum >=0; rowNum--)
+                sb.AppendJoin("", GetRow(rowNum).Select(c => c == null ? " " : c.ToString().Substring(0, 1)))
+                    .Append("\n");
+            return sb.ToString();
         }
     }
 
