@@ -46,6 +46,7 @@ namespace ConnectFourTests
             {
                 Assert.AreEqual(1, state.GetResult(X), state.ToString());
                 Assert.AreEqual(0, state.GetResult(O), state.ToString());
+                Assert.IsFalse(state.Actions.Any());
             }
         }
 
@@ -58,6 +59,7 @@ namespace ConnectFourTests
             {
                 Assert.AreEqual(1, state.GetResult(X), state.ToString());
                 Assert.AreEqual(0, state.GetResult(O), state.ToString());
+                Assert.IsFalse(state.Actions.Any());
             }
         }
 
@@ -70,6 +72,7 @@ namespace ConnectFourTests
             {
                 Assert.AreEqual(1, state.GetResult(X), state.ToString());
                 Assert.AreEqual(0, state.GetResult(O), state.ToString());
+                Assert.IsFalse(state.Actions.Any());
             }
         }
 
@@ -82,7 +85,20 @@ namespace ConnectFourTests
             {
                 Assert.AreEqual(1, state.GetResult(X), state.ToString());
                 Assert.AreEqual(0, state.GetResult(O), state.ToString());
+                Assert.IsFalse(state.Actions.Any());
             }
+        }
+
+        [TestMethod]
+        public void FullRun_Simple()
+        {
+            var state = new ConnectFourState();
+            foreach (var position in new[] { 0, 0, 1, 1, 2, 2, 3 })
+                state.ApplyAction(new ConnectFourAction(position));
+
+            Assert.IsFalse(state.Actions.Any());
+            Assert.AreEqual(1, state.GetResult(X));
+            Assert.AreEqual(0, state.GetResult(O));
         }
     }
 

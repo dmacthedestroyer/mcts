@@ -46,12 +46,39 @@ namespace ConnectFour
         public const int NumRows = 6;
         public const int NumCols = 7;
 
-        // board is a NumRows * NumCols array, with the zeroeth index being the bottom left and the last value being the top right
+        // board is a NumRows * NumCols array, with the 0th index being the bottom left and the last value being the top right
         private ConnectFourPlayer[] board;
         // to save time, we precompute the available actions and store them in this variable
         private IList<ConnectFourAction> availableActions;
         // to save time, we precompute the available winning runs of 4 ahead of time and prune the list as we apply actions
         private IList<int[]> availableWinningRuns = new List<int[]>();
+        // when a winner is found, store it here. Maybe that's not a bad idea, but I'll let future Dan be the judge
+        private ConnectFourPlayer winner;
+
+        private void pruneAvailableWinningRuns(int forPosition)
+        {
+            var toPrune = new List<int[]>();
+            foreach(var run in availableWinningRuns)
+            {
+                if (run.Contains(forPosition))
+                {
+                    var boardValues = run.ToBoardValues(board);
+                    ConnectFourPlayer runWinner;
+                    if((runWinner = boardValues.GetWinner()) != null)
+                    {
+                        winner = runWinner;
+                        availableWinningRuns.Clear();
+                        return;
+                    }
+
+                    if(!boardValues.CanWin())
+                    {
+                        toPrune.Add(run);
+                    }
+                }
+            }
+            toPrune.ForEach(run => availableWinningRuns.Remove(run));
+        }
 
         /// <summary>
         /// Converts a row, column coordinate into a flat index in the board
@@ -102,7 +129,7 @@ namespace ConnectFour
 
         public ConnectFourPlayer CurrentPlayer { get; private set; }
 
-        public IList<ConnectFourAction> Actions => availableActions;
+        public IList<ConnectFourAction> Actions => winner == null ? availableActions : new ConnectFourAction[0];
 
         public ConnectFourState(ConnectFourPlayer[] board, ConnectFourPlayer currentPlayer = null)
         {
@@ -116,6 +143,12 @@ namespace ConnectFour
             // TODO: prune runs that can't produce wins
             availableWinningRuns = GetDefaultAvailableWinningRuns();
             CurrentPlayer = CurrentPlayer ?? ConnectFourPlayer.X;
+            board
+                .Select((p, i) => new { p, i })
+                .Where(o => o.p != null)
+                .Select(o => o.i)
+                .ToList()
+                .ForEach(pruneAvailableWinningRuns);
         }
 
         public ConnectFourState() {
@@ -128,8 +161,8 @@ namespace ConnectFour
         public ConnectFourState(ConnectFourState toClone)
         {
             board = toClone.board.ToArray();
-            availableActions = toClone.availableActions.ToList();
-            availableWinningRuns = toClone.availableWinningRuns.ToList();
+            availableActions = new List<ConnectFourAction>(toClone.availableActions);
+            availableWinningRuns = new List<int[]>(toClone.availableWinningRuns);
             CurrentPlayer = toClone.CurrentPlayer;
         }
 
@@ -153,23 +186,17 @@ namespace ConnectFour
                 availableActions.Remove(availableActions.FirstOrDefault(a => a.Column == action.Column));
 
             // TODO: prune the available winning runs list
-
-            board[row.Value * action.Column] = CurrentPlayer;
+            var actionPosition = GetBoardIndex(row.Value, action.Column);
+            board[actionPosition] = CurrentPlayer;
             CurrentPlayer = CurrentPlayer.NextPlayer;
-        }
-
-        public ConnectFourPlayer GetWinner()
-        {
-            return availableWinningRuns
-                .Select(run => run.Select(i => board[i]).ToList()) // convert indexes to board values
-                .Where(run => run.IsDistinctNotNull()) // if there's a run that has all the same (non-null) player, it's a win
-                .Select(run => run[0]) // so take the first one
-                .FirstOrDefault(); // and return it
+            pruneAvailableWinningRuns(actionPosition);
         }
 
         public double GetResult(ConnectFourPlayer forPlayer)
         {
-            var winner = GetWinner();
+            if (Actions.Any())
+                throw new InvalidOperationException("Game isn't over yet");
+
             if (winner == forPlayer) return 1;
             if (winner == null) return 0.5;
             return 0;
@@ -192,31 +219,54 @@ namespace ConnectFour
         public override string ToString()
         {
             var sb = new StringBuilder();
-            for(var rowNum = NumRows-1; rowNum >=0; rowNum--)
-                sb.AppendJoin("", GetRow(rowNum).Select(c => c == null ? " " : c.ToString().Substring(0, 1)))
-                    .Append("\n");
+            for (var rowNum = NumRows - 1; rowNum >= 0; rowNum--)
+            {
+                sb.AppendJoin("", GetRow(rowNum).Select(c => c == null ? " " : c.ToString().Substring(0, 1)));
+                if (rowNum > 0)
+                    sb.Append("\n");
+            }
             return sb.ToString();
         }
     }
 
     public static class ExtensionMethods
     {
-        public static bool IsDistinctNotNull<T>(this IEnumerable<T> source)
+        public static IEnumerable<ConnectFourPlayer> ToBoardValues(this IEnumerable<int> positions, ConnectFourPlayer[] board)
         {
-            var hasEncounteredFirst = false;
-            T first = default(T);
+            return positions.Select(pos => board[pos]);
+        }
 
-            foreach (var t in source)
+        public static ConnectFourPlayer GetWinner(this IEnumerable<ConnectFourPlayer> source)
+        {
+            ConnectFourPlayer winner = null;
+            var iteratedFirstElement = false;
+
+            foreach(var p in source)
             {
-                if (!hasEncounteredFirst)
+                if (!iteratedFirstElement)
                 {
-                    hasEncounteredFirst = true;
-                    first = t;
+                    iteratedFirstElement = true;
+                    winner = p;
                 }
-
-                if (t == null || !ReferenceEquals(first, t))
-                    return false;
+                if (p == null || p != winner)
+                    return null;
             }
+
+            return winner;
+        }
+
+        public static bool CanWin(this IEnumerable<ConnectFourPlayer> source)
+        {
+            ConnectFourPlayer firstFoundPlayer = null;
+
+            foreach (var p in source)
+                if(p != null)
+                {
+                    if(firstFoundPlayer == null)
+                        firstFoundPlayer = p;
+                    if (p != firstFoundPlayer)
+                        return false;
+                }
 
             return true;
         }
